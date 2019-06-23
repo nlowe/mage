@@ -1,19 +1,22 @@
 language: go
 
 # prevent double test runs for PRs
-branches:
-  only:
-    - "master"
+#branches:
+#  only:
+#    - "master"
 
 # In theory, older versions would probably work fine, but since this isn't a 
 # library, I'm not going to worry about older versions for now.
 go:
   - tip
+  - 1.12.x
   - 1.11.x
   - 1.10.x
   - 1.9.x
   - 1.8.x
   - 1.7.x
+
+go_import_path: github.com/magefile/mage
 
 # don't call go get ./... because this hides when deps are
 # not packaged into the vendor directory.
