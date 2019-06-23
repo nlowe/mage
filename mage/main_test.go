@@ -236,6 +236,20 @@ func TestListMagefilesLib(t *testing.T) {
 }
 
 func TestMixedMageImports(t *testing.T) {
+	_, goModuleSet := os.LookupEnv("GO111MODULE")
+
+	if err := os.Setenv("GO111MODULE", "off"); err != nil {
+		t.Fatalf("Failed to disable go modules for flaky test")
+	}
+
+	if goModuleSet {
+		defer func() {
+			if err := os.Unsetenv("GO111MODULE"); err != nil {
+				t.Fatalf("Failed to reset go module status")
+			}
+		}()
+	}
+
 	stderr := &bytes.Buffer{}
 	stdout := &bytes.Buffer{}
 	inv := Invocation{

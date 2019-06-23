@@ -17,9 +17,6 @@ go:
   - 1.7.x
 
 go_import_path: github.com/magefile/mage
-env:
-  global:
-    - GO111MODULE=off
 
 # don't call go get ./... because this hides when deps are
 # not packaged into the vendor directory.
